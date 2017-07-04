@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="descreva o sistema aqui">
+      <meta name="author" content="voces">
+
+      <title> Matlab Sux </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/sticky-footer-navbar.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link rel="shortcut icon" href="/static/img/logo.jpg">
+</head>
+
+<body>
+
+<div class="page-header text-center">
+    <h3> Markov Python Plot Tabajara </h3>
+    <p> Agora esse Mestrado sai ! </p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">N &nbsp &nbsp </label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="N" placeholder="100" style="width: 100%">
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">tend</label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="tend" placeholder="2000" style="width: 100%">
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">t_ap</label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="t_ap" placeholder="400" style="width: 100%">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">Ap</label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="Ap" placeholder="15" style="width: 100%">
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">dt &nbsp</label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="dt" placeholder="0.1" style="width: 100%">
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-12 text-center">
+            <label for="usr">w &nbsp</label>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <input type="text" class="form-control" id="w" placeholder="2000" style="width: 100%">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="dropdown" id="drop_grafico">
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                style="display: block; width: 100%;">
+                M4
+                <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#" data-value="action">tv</a></li>
+                <li><a href="#" data-value="another action">N_open</a></li>
+                <li><a href="#" data-value="something else here">iKr</a></li>
+                <li><a href="#" data-value="separated link">v</a></li>
+                <li><a href="#" data-value="separated link">M1</a></li>
+                <li><a href="#" data-value="separated link">M2</a></li>
+                <li><a href="#" data-value="separated link">M3</a></li>
+                <li><a href="#" data-value="separated link">M4</a></li>
+                <li><a href="#" data-value="separated link">M5</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div>
+                <button type="button"  id='Atualizar' class="btn btn-primary btn-lg envia" style="display: block; width: 100%;">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Atualizar Gráfico
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div>
+                <button type="button"  id='recalcular' class="btn btn-primary btn-lg envia" style="display: block; width: 100%;">
+                    <span class="glyphicon glyphicon-console" aria-hidden="true"></span> Recalcular
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="container"></div>
+
+    <br /><br />
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted"> Gráficos Python by Tabajara SA </p>
+    </div>
+</footer>
+
+<script>
+$( document ).ready(function() {
+    pega_dados();
+});
+
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 3000)
+
+var selecionado = {
+    nome : "",
+    dado : [],
+    grandeza : "",
+    subtitutlo : ""
+};
+var inicio = true;
+
+var tv;
+var N_open;
+var iKr;
+var v;
+var M1;
+var M2;
+var M3;
+var M4;
+var M5;
+
+var N;
+var tend;
+var t_ap;
+var Ap;
+var dt;
+var w;
+
+function gera_grafico(){
+    Highcharts.chart('container', {
+    chart: {
+            zoomType: 'x'
+        },
+    title: {
+        text: selecionado.nome
+    },
+    subtitle: {
+        text: selecionado.titulo
+    },
+    yAxis: {
+        title: {
+            text: selecionado.grandeza
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+    plotOptions: {
+        series: {
+            pointStart: 0,
+            animation: {
+                duration: 3000
+                //easing: 'easeOutBounce'
+            }
+        }
+    },
+    series: [{
+        name: selecionado.grandeza,
+        data: selecionado.dado,
+        type: 'spline',
+        }]
+    })
+}
+
+function pega_dados(){
+    N = $('#N').val();
+    tend = $('#tend').val();
+    t_ap = $('#t_ap').val();
+    Ap = $('#Ap').val();
+    dt = $('#dt').val();
+    w = $('#w').val();
+    if (!N)
+    {
+        N = 100;
+    }
+    if (!tend)
+    {
+        tend = 2000;
+    }
+    if (!t_ap)
+    {
+        t_ap = 400;
+    }
+    if (!Ap)
+    {
+        Ap = 15;
+    }
+    if (!dt)
+    {
+        dt = 0.1;
+    }
+    if (!w)
+    {
+        w = 2000;
+    }
+    $.getJSON('/dado_grafico.json',
+    {
+        N: N,
+        tend: tend,
+        t_ap: t_ap,
+        Ap: Ap,
+        dt: dt,
+        w: w
+    })
+    .done(function( data ){
+        console.log("resposta");
+        tv = data[0];
+        N_open = data[1];
+        iKr = data[2];
+        v = data[3];
+        M1 = data[4];
+        M2 = data[5];
+        M3 = data[6];
+        M4 = data[7];
+        M5 = data[8];
+        if (inicio)
+        {
+            selecionado.dado = M4;
+            selecionado.nome = "M4";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M4 - sei la o que é isso";
+        }
+        inicio = false;
+        gera_grafico();
+    });
+}
+
+$(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    var sel = $(this).text();
+    switch (sel) {
+        case 'tv':
+            selecionado.dado = tv;
+            selecionado.nome = "tv";
+            selecionado.grandeza = "Segundos";
+            selecionado.titulo = "tv - sei la o que é isso";
+            break;
+        case 'N_open':
+            selecionado.dado = N_open;
+            selecionado.nome = "N_open";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "N_open - sei la o que é isso";
+            break;
+        case 'iKr':
+            selecionado.dado = iKr;
+            selecionado.nome = "iKr";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "iKr - sei la o que é isso";
+            break;
+        case 'v':
+            selecionado.dado = v;
+            selecionado.nome = "v";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "v - sei la o que é isso";
+            break;
+        case 'M1':
+            selecionado.dado = M1;
+            selecionado.nome = "M1";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M1 - sei la o que é isso";
+            break;
+        case 'M2':
+            selecionado.dado = M2;
+            selecionado.nome = "M2";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M2 - sei la o que é isso";
+            break;
+        case 'M3':
+            selecionado.dado = M3;
+            selecionado.nome = "M3";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M3 - sei la o que é isso";
+            break;
+        case 'M4':
+            selecionado.dado = M4;
+            selecionado.nome = "M4";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M4 - sei la o que é isso";
+            break;
+        case 'M5':
+            selecionado.dado = M5;
+            selecionado.nome = "M5";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M5 - sei la o que é isso";
+            break;
+    default:
+            selecionado.dado = M4;
+            selecionado.nome = "M4";
+            selecionado.grandeza = "Hz";
+            selecionado.titulo = "M4 - sei la o que é isso";
+  }
+  gera_grafico();
+});
+
+$("#Atualizar").click(function(){
+    gera_grafico();
+});
+
+$("#recalcular").click(function(){
+    pega_dados();
+});
+
+
+</script>
+
+
+</body>
+
+</html>

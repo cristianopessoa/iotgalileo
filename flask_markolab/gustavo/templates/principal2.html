@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cristiano-IFSP-Mestrado">
+    <meta name="author" content="Gustavo Voltani von Atzingen">
+    <link rel="icon" href="{{ url_for('static', filename='imagens/favorite.ico')}}">
+    <title> Matlab Sux ! </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+
+</head>
+
+<body>
+  <div class="container ">
+    <div class="page-header">
+      <h1> Teste dos graficos com Python <small> Powerd by Python, flask e highcharts </small></h1>
+    </div>
+
+    <br />
+
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"> N </span>
+      <input type="text" id="varN" class="form-control" placeholder="Valor de N" aria-describedby="basic-addon1">
+    </div>
+
+    <br />
+
+    Variavel V2 <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+
+    <br /><br />
+
+    V2: <input type="checkbox" aria-label="V2">
+    V3: <input type="checkbox" aria-label="V3">
+    V4: <input type="checkbox" aria-label="V4">
+
+    <br /><br />
+
+    V5:
+    <select class="form-control">
+      <option value="one">1</option>
+      <option value="two">2</option>
+      <option value="three">3</option>
+      <option value="four">4</option>
+      <option value="five">5</option>
+    </select>
+
+    <br /><br />
+
+    <div id="browse_app">
+        <a class="btn btn-large btn-info" href="/get_plot/"> Browse</a>
+    </div>
+
+
+    <br /><br />
+
+    <div id="container-grafico1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+  </div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+<script>
+
+    // $(function(){
+    //     $('#enviar').click(function(){
+    //         alert('bt clicado' + "/get_plot/" + str($("#varN").val())
+    //     });
+    // });
+
+    //$('#enviar').get("/get_plot/" + str($("#varN").val()));
+
+    // $("button").click(function(){
+    //     $.get("/get_plot/" + str($("#varN").val(), function(data, status){
+    //         alert("Data: " + data + "\nStatus: " + status);
+    //     });
+    // });
+
+
+  // $('#enviar').on('click', function(e){
+  //     type: "GET",
+  //     url: "/get_plot/" + str($("#varN").val())
+  // });
+
+</script>
+
+
+<script>
+  $('#ex1').slider({
+    formatter: function(value) {
+      return 'Current value: ' + value;
+    }
+  });
+</script>
+
+<script>
+Highcharts.chart('container-grafico1', {
+    title: {
+        text: 'markov'
+    },
+    subtitle: {
+        text: 'valores obtidos no matlab'
+    },
+    xAxis: {
+        type: 'datetime'
+    },
+    yAxis: {
+        title: {
+            text: 'a definir'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+    plotOptions: {
+        series: {
+            pointStart: 0
+        }
+    },
+    series: [{
+        name: 'g',
+        data: [
+            {% for i in valores1 %}
+                {{i|safe}} ,
+            {% endfor %}
+        ]
+    }, {name: 'ikr',
+    data:[
+        {% for i in valores2 %}
+            {{i|safe}} ,
+        {% endfor %}
+    ]}]
+});
+</script>
+
+</html>
